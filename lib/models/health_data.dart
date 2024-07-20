@@ -1,8 +1,12 @@
-class HealthData {
-  final DateTime date;
-  int steps;
-  int calories;
-  int heartRate;
+class SaglikVerisi {
+  final DateTime tarih;
+  int adim;
+  int kalori;
+  int nabiz;
+  int tansiyon;
+  int sekerSeviyesi;
+  int kilo;
 
-  HealthData(this.date, this.steps, this.calories, this.heartRate);
+  SaglikVerisi(this.tarih, this.adim, this.kalori, this.nabiz, this.tansiyon,
+      this.sekerSeviyesi, this.kilo);
 }

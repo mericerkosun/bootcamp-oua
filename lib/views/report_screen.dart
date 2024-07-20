@@ -2,30 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:saglik_takip_v2/provider/health_data_provider.dart';
 
-class ReportScreen extends StatelessWidget {
+class RaporEkrani extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final healthData = Provider.of<HealthDataProvider>(context).data;
+    final saglikVerisi = Provider.of<SaglikVeriProvider>(context).veri;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Health Report'),
+        title: Text('Sağlık Raporu'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
-          itemCount: healthData.length,
+          itemCount: saglikVerisi.length,
           itemBuilder: (context, index) {
-            final data = healthData[index];
+            final veri = saglikVerisi[index];
+            final formattedDate =
+                "${veri.tarih.day}/${veri.tarih.month}/${veri.tarih.year}"; // Tarihi formatlıyoruz
+
             return Card(
               child: ListTile(
-                title: Text('Date: ${data.date.toLocal()}'.split(' ')[0]),
+                title: Text('Tarih: $formattedDate'),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Steps: ${data.steps}'),
-                    Text('Calories: ${data.calories}'),
-                    Text('Heart Rate: ${data.heartRate}'),
+                    Text('Adım: ${veri.adim}'),
+                    Text('Kalori: ${veri.kalori}'),
+                    Text('Nabız: ${veri.nabiz}'),
+                    Text('Tansiyon: ${veri.tansiyon}'),
+                    Text('Şeker Seviyesi: ${veri.sekerSeviyesi}'),
+                    Text('Kilo: ${veri.kilo}'),
                   ],
                 ),
               ),
